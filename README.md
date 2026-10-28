@@ -20,6 +20,8 @@ Many features are implemented, but there is currently **no Forge or Fabric suppo
 - Windows Server 2012
 - And newer
 
+**warning : MADLauncher is not to be confused with the 2000s MadLauncher (https://madlauncher.sourceforge.net/) — a Linux-like application launcher for Windows written in C++/Qt. That one required XML configs and Alt+F2; ours launches Minecraft with a single click.**
+
 # Screnshots
 
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3fda3d56-2230-46cd-a290-850ab17124b5" />

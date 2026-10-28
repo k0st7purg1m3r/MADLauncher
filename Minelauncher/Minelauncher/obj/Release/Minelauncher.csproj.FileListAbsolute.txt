@@ -1,0 +1,9 @@
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\bin\Release\Minelauncher.exe.config
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\bin\Release\Minelauncher.exe
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\bin\Release\Minelauncher.pdb
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.Form1.resources
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.Properties.Resources.resources
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.SettingsForm.resources
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.csproj.GenerateResource.Cache
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.exe
+c:\users\kosty\documents\visual studio 2013\Projects\Minelauncher\Minelauncher\obj\Release\Minelauncher.pdb

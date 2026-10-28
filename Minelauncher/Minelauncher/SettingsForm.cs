@@ -22,6 +22,7 @@ namespace Minelauncher
             ramupdown.Value = ram;
             javaBox.Text = s.JavaPath;
             argumentBox.Text = s.ExtraArgs;
+            logCheckbox.Checked = s.EnableLogs;
         }
 
         private void Savebtn_Click(object sender, EventArgs e)
@@ -30,6 +31,7 @@ namespace Minelauncher
             s.RamMb = (int)ramupdown.Value;
             s.JavaPath = string.IsNullOrWhiteSpace(javaBox.Text) ? "java" : javaBox.Text.Trim();
             s.ExtraArgs = argumentBox.Text;
+            s.EnableLogs = logCheckbox.Checked;
             s.Save();
             MessageBox.Show("Настройки сохранены.");
             this.Close();

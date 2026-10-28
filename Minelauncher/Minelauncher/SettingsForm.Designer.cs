@@ -28,6 +28,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.javaBox = new System.Windows.Forms.TextBox();
             this.browseJavaBtn = new System.Windows.Forms.Button();
+            this.logCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ramupdown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             // savebtn
             // 
             this.savebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.savebtn.Location = new System.Drawing.Point(12, 268);
+            this.savebtn.Location = new System.Drawing.Point(12, 378);
             this.savebtn.Name = "savebtn";
             this.savebtn.Size = new System.Drawing.Size(111, 31);
             this.savebtn.TabIndex = 1;
@@ -148,12 +149,25 @@
             this.browseJavaBtn.Text = "Обзор";
             this.browseJavaBtn.UseVisualStyleBackColor = true;
             // 
+            // logCheckbox
+            // 
+            this.logCheckbox.AutoSize = true;
+            this.logCheckbox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logCheckbox.ForeColor = System.Drawing.Color.White;
+            this.logCheckbox.Location = new System.Drawing.Point(12, 238);
+            this.logCheckbox.Name = "logCheckbox";
+            this.logCheckbox.Size = new System.Drawing.Size(170, 21);
+            this.logCheckbox.TabIndex = 10;
+            this.logCheckbox.Text = "Показывать окно логов";
+            this.logCheckbox.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(552, 311);
+            this.ClientSize = new System.Drawing.Size(552, 421);
+            this.Controls.Add(this.logCheckbox);
             this.Controls.Add(this.browseJavaBtn);
             this.Controls.Add(this.javaBox);
             this.Controls.Add(this.label4);
@@ -189,5 +203,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox javaBox;
         private System.Windows.Forms.Button browseJavaBtn;
+        private System.Windows.Forms.CheckBox logCheckbox;
     }
 }

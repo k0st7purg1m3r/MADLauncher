@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -598,51 +597,64 @@ namespace Minelauncher
                 return;
             }
 
-            if (LogWindow == null || LogWindow.IsDisposed)
+            if (config.EnableLogs)
             {
-                LogWindow = new ConsoleForm();
+                if (LogWindow == null || LogWindow.IsDisposed)
+                {
+                    LogWindow = new ConsoleForm();
+                }
+                LogWindow.Show();
+                LogWindow.BringToFront();
+                LogWindow.ClearLog();
+                LogWindow.AppendLog("Запуск: " + javaExe + " " + javaArgs);
             }
-            LogWindow.Show();
-            LogWindow.BringToFront();
-            LogWindow.ClearLog();
-            LogWindow.AppendLog("Запуск: " + javaExe + " " + javaArgs);
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = javaExe;
             startInfo.Arguments = javaArgs;
             startInfo.WorkingDirectory = GameDirectory;
             startInfo.UseShellExecute = false;
-            startInfo.CreateNoWindow = true;
-            startInfo.RedirectStandardOutput = true;
-            startInfo.RedirectStandardError = true;
+            startInfo.CreateNoWindow = !config.EnableLogs;
+            startInfo.RedirectStandardOutput = config.EnableLogs;
+            startInfo.RedirectStandardError = config.EnableLogs;
 
             Process process = new Process();
             process.StartInfo = startInfo;
 
-            process.OutputDataReceived += (s, ev) =>
+            if (config.EnableLogs)
             {
-                if (ev.Data != null && LogWindow != null && !LogWindow.IsDisposed)
+                process.OutputDataReceived += (s, ev) =>
                 {
-                    LogWindow.AppendLog(ev.Data);
-                }
-            };
-            process.ErrorDataReceived += (s, ev) =>
-            {
-                if (ev.Data != null && LogWindow != null && !LogWindow.IsDisposed)
+                    if (ev.Data != null && LogWindow != null && !LogWindow.IsDisposed)
+                    {
+                        LogWindow.AppendLog(ev.Data);
+                    }
+                };
+                process.ErrorDataReceived += (s, ev) =>
                 {
-                    LogWindow.AppendLog(ev.Data);
-                }
-            };
+                    if (ev.Data != null && LogWindow != null && !LogWindow.IsDisposed)
+                    {
+                        LogWindow.AppendLog(ev.Data);
+                    }
+                };
+            }
 
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
 
-            LogWindow.FormClosed += (s, ev) =>
+            if (config.EnableLogs)
             {
-                try { if (!process.HasExited) process.Kill(); }
-                catch { }
-            };
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                if (LogWindow != null)
+                {
+                    LogWindow.FormClosed += (s, ev) =>
+                    {
+                        try { if (!process.HasExited) process.Kill(); }
+                        catch { }
+                    };
+                }
+            }
         }
 
         private static string[] SplitArguments(string commandLine)
@@ -850,57 +862,6 @@ namespace Minelauncher
                 {
                     return Id + " (" + Release.ToString("yyyy-MM-dd") + ")";
                 }
-            }
-        }
-    }
-
-    public class ConsoleForm : Form
-    {
-        private RichTextBox LogBox;
-
-        public ConsoleForm()
-        {
-            this.Text = "Логи Minecraft";
-            this.Size = new Size(800, 500);
-            this.BackColor = Color.Black;
-            this.ForeColor = Color.White;
-
-            LogBox = new RichTextBox();
-            LogBox.Dock = DockStyle.Fill;
-            LogBox.BackColor = Color.Black;
-            LogBox.ForeColor = Color.White;
-            LogBox.Font = new Font("Consolas", 10f);
-            LogBox.ReadOnly = true;
-            LogBox.ScrollBars = RichTextBoxScrollBars.Vertical;
-            this.Controls.Add(LogBox);
-        }
-
-        public void AppendLog(string text)
-        {
-            if (LogBox.InvokeRequired)
-            {
-                LogBox.Invoke(new Action(() =>
-                {
-                    LogBox.AppendText(text + Environment.NewLine);
-                    LogBox.ScrollToCaret();
-                }));
-            }
-            else
-            {
-                LogBox.AppendText(text + Environment.NewLine);
-                LogBox.ScrollToCaret();
-            }
-        }
-
-        public void ClearLog()
-        {
-            if (LogBox.InvokeRequired)
-            {
-                LogBox.Invoke(new Action(() => LogBox.Clear()));
-            }
-            else
-            {
-                LogBox.Clear();
             }
         }
     }

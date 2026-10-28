@@ -9,12 +9,14 @@ namespace Minelauncher
         public int RamMb { get; set; }
         public string JavaPath { get; set; }
         public string ExtraArgs { get; set; }
+        public bool EnableLogs { get; set; }
 
         public LauncherSettings()
         {
             RamMb = 2048;
             JavaPath = "java";
             ExtraArgs = "";
+            EnableLogs = false;
         }
 
         private static string FilePath
